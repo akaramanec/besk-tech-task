@@ -24,7 +24,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('refresh', [AuthController::class, 'refresh']);
 
         Route::middleware(['log.requests'])->group(function () {
-            Route::apiResource('currencies', CurrencyController::class);
+            Route::get('currencies', [CurrencyController::class, 'index']);
+            Route::post('currencies', [CurrencyController::class, 'store']);
+            Route::get('currencies/{currency}', [CurrencyController::class, 'show']);
+            Route::put('currencies/{currency}', [CurrencyController::class, 'update']);
+            Route::delete('currencies/{currency}', [CurrencyController::class, 'destroy']);
         });
     });
 });

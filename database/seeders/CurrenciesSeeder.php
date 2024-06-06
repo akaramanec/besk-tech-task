@@ -15,7 +15,8 @@ class CurrenciesSeeder extends Seeder
     {
         Currency::create([
             'code_alfa' => 'UAH',
-            'code_num' => '980'
+            'code_num' => '980',
+            'rate_cross' => '1'
         ]);
         Currency::create([
             'code_alfa' => 'USD',

@@ -16,7 +16,7 @@ class CurrencyPolicy
         return $user->hasPermissionTo('view currency rates');
     }
 
-    public function view(User $user, Currency $currency)
+    public function view(User $user)
     {
         return $user->hasPermissionTo('view currency rate');
     }
@@ -26,12 +26,12 @@ class CurrencyPolicy
         return $user->hasPermissionTo('create currency rate');
     }
 
-    public function update(User $user, Currency $currency)
+    public function update(User $user)
     {
         return $user->hasPermissionTo('update currency rate');
     }
 
-    public function delete(User $user, Currency $currency)
+    public function delete(User $user)
     {
         return $user->hasPermissionTo('delete currency rate');
     }

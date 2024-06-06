@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeEmail;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +32,7 @@ class AuthController extends Controller
 
         $user->assignRole(Role::roleUserApi());
         $token = JWTAuth::fromUser($user);
+        Mail::to($user->email)->queue(new WelcomeEmail($user));
 
         return response()->json($this->getTokenData($token), Response::HTTP_CREATED);
     }
