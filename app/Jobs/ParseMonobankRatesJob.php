@@ -37,6 +37,7 @@ class ParseMonobankRatesJob implements ShouldQueue
 
     private function cacheCurrencies()
     {
+        Cache::flush();
         Currency::all()->each(function ($currency) {
             Cache::set('currency:' . $currency->id, $currency);
         });

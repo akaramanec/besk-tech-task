@@ -34,9 +34,9 @@ class CurrencyController extends Controller
     public function show($id)
     {
         $currency = Cache::get('currency:' . $id);
-        $this->authorize('view', $currency);
+        $this->authorize('view', $currency ?? Currency::class);
         if (!$currency) {
-            return response()->json(['status' => 'error', 'message' => 'Currency not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'Currency not found'], Response::HTTP_NOT_FOUND);
         }
         return new CurrencyResource($currency);
     }
